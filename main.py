@@ -16,5 +16,11 @@ async def on_message(message):
     if message.content.startswith("$hello"):
         await message.channel.send("Hello!")
 
-#client.run(os.getenv('TOKEN'))
+    if message.content == '/neko':
+        await message.channel.send('にゃーん')
+
+    if message.content == '/set_skin':
+        await message.channel.send(f"{os.listdir(path='.')}")
+
+
 client.run(os.getenv('DISCORD_BOT_TOKEN'))
