@@ -24,10 +24,11 @@ async def on_message(message):
         await message.channel.send('set skin!')
 
         def check(m):
-            return m.content == "hello" and m.channel == channel:
+            return m.author == message.author
 
-        msg = await client.wait_for('message', check=check)
-        await channel.send(f"Hello {msg.author}")
+        msg = await client.wait_for('message', check=check, timeout=10)
+
+        await message.channel.send(f"Message {msg.content}")
         #await message.channel.send(f"{os.listdir(path='.')}")
 
 
