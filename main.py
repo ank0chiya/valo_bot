@@ -1,6 +1,7 @@
 import discord
 import os
 import json
+import datetime
 
 
 client = discord.Client()
@@ -34,9 +35,20 @@ async def on_message(message):
             msg = await client.wait_for('message', check=check)
             wapon_list.append(msg.content)
         
-        print(wapon_list.content)
+        print(wapon_list)
 
-        await message.channel.send(f"Message {wapon_list[1].content}")
+        today_format = datetime.date.today()
+        today = today_format.strftime("%Y/%m/%d")
+        print(today)
+        json_open = open('db/db.json', 'r')
+        json_load = json.load(json_open)
+        for date in json_load.values():
+            if date == today:
+                print("today")
+        else:
+            print("add new section")
+
+        await message.channel.send(f"Message {wapon_list[1]}")
         #await message.channel.send(f"{os.listdir(path='.')}")
 
     if message.content == '/get_skin':
