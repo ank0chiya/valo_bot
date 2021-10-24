@@ -20,7 +20,15 @@ async def on_message(message):
         await message.channel.send('にゃーん')
 
     if message.content == '/set_skin':
-        await message.channel.send(f"{os.listdir(path='.')}")
+        channel = message.channel
+        await message.channel.send('set skin!')
+
+        def check(m):
+            return m.content == "hello" and m.channel == channel:
+
+        msg = await client.wait_for('message', check=check)
+        await channel.send(f"Hello {msg.author}")
+        #await message.channel.send(f"{os.listdir(path='.')}")
 
 
 client.run(os.getenv('DISCORD_BOT_TOKEN'))
