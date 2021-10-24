@@ -31,9 +31,10 @@ async def on_message(message):
         await message.channel.send("記入形式は｛武器種:武器名｝にしてください")
         wapon_list = []
         for _ in range(4):
-            wapon_list.append(await client.wait_for('message', check=check, timeout=10))
+            msg = await client.wait_for('message', check=check)
+            wapon_list.append(msg.content)
         
-        print(wapon_list)
+        print(wapon_list.content)
 
         await message.channel.send(f"Message {wapon_list[1].content}")
         #await message.channel.send(f"{os.listdir(path='.')}")
